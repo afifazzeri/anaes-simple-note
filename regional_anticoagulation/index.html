@@ -1,1 +1,1333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ASRA 5th Ed — Regional Anaesthesia & Antithrombotics | Quick Reference</title>
+<style>
+  :root{
+    --cyan-50:#ecfeff;
+    --cyan-100:#cffafe;
+    --cyan-200:#a5f3fc;
+    --cyan-300:#67e8f9;
+    --cyan-400:#22d3ee;
+    --cyan-500:#06b6d4;
+    --cyan-600:#0891b2;
+    --cyan-700:#0e7490;
+    --cyan-900:#164e63;
+    --yellow-50:#fefce8;
+    --yellow-100:#fef9c3;
+    --yellow-200:#fef08a;
+    --yellow-300:#fde047;
+    --yellow-400:#facc15;
+    --yellow-500:#eab308;
+    --ink:#0f2f3a;
+    --muted:#5b7c88;
+    --line:#d6eef3;
+  }
 
+  *{box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  body{
+    margin:0;
+    font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(1200px 600px at 10% -10%, var(--cyan-100) 0%, transparent 60%),
+      radial-gradient(900px 500px at 110% 0%, var(--yellow-100) 0%, transparent 55%),
+      linear-gradient(180deg, #f7feff 0%, #ffffff 45%, #fffdf2 100%);
+    background-attachment: fixed;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------- HEADER ---------- */
+  header{
+    position:relative;
+    padding:2.2rem 1.25rem 2.6rem;
+    background:linear-gradient(135deg, var(--cyan-700) 0%, var(--cyan-500) 45%, var(--cyan-400) 100%);
+    color:#fff;
+    overflow:hidden;
+    border-bottom:6px solid var(--yellow-400);
+  }
+  header::after{
+    content:"";
+    position:absolute;
+    right:-120px; top:-120px;
+    width:420px; height:420px;
+    border-radius:50%;
+    background:radial-gradient(circle, rgba(253,224,71,.55) 0%, rgba(253,224,71,0) 70%);
+    pointer-events:none;
+  }
+  .wrap{max-width:1080px;margin:0 auto;position:relative;z-index:1;}
+  .badge{
+    display:inline-flex;align-items:center;gap:.5rem;
+    background:var(--yellow-300);
+    color:#4a3b00;
+    font-weight:700;
+    font-size:.72rem;
+    letter-spacing:.09em;
+    text-transform:uppercase;
+    padding:.35rem .8rem;
+    border-radius:999px;
+    box-shadow:0 4px 14px rgba(0,0,0,.12);
+  }
+  h1{
+    margin:.85rem 0 .4rem;
+    font-size:clamp(1.35rem, 3.4vw, 2.05rem);
+    line-height:1.2;
+    font-weight:800;
+    letter-spacing:-.015em;
+    text-shadow:0 2px 12px rgba(0,0,0,.18);
+  }
+  .subtitle{
+    margin:0;
+    font-size:.95rem;
+    color:#e0fbff;
+    max-width:820px;
+  }
+
+  /* ---------- TOOLBAR ---------- */
+  .toolbar{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(255,255,255,.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+    padding:.7rem 1.25rem;
+  }
+  .toolbar-inner{
+    max-width:1080px;margin:0 auto;
+    display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;
+  }
+  .search{
+    flex:1 1 240px;
+    position:relative;
+  }
+  .search input{
+    width:100%;
+    padding:.62rem .9rem .62rem 2.2rem;
+    border-radius:12px;
+    border:1.5px solid var(--cyan-200);
+    background:#fff;
+    font-size:.9rem;
+    color:var(--ink);
+    outline:none;
+    transition:border-color .2s, box-shadow .2s;
+  }
+  .search input:focus{
+    border-color:var(--cyan-500);
+    box-shadow:0 0 0 4px rgba(34,211,238,.18);
+  }
+  .search::before{
+    content:"⌕";
+    position:absolute;
+    left:.8rem; top:50%;
+    transform:translateY(-52%);
+    color:var(--cyan-600);
+    font-size:1.05rem;
+    font-weight:700;
+  }
+  .btn{
+    border:none;
+    cursor:pointer;
+    font-family:inherit;
+    font-size:.83rem;
+    font-weight:700;
+    padding:.62rem 1rem;
+    border-radius:12px;
+    transition:transform .15s, box-shadow .2s, background .2s;
+    white-space:nowrap;
+  }
+  .btn:active{transform:translateY(1px);}
+  .btn-cyan{
+    background:linear-gradient(135deg,var(--cyan-500),var(--cyan-600));
+    color:#fff;
+    box-shadow:0 4px 14px rgba(6,182,212,.32);
+  }
+  .btn-cyan:hover{box-shadow:0 6px 20px rgba(6,182,212,.45);}
+  .btn-yellow{
+    background:linear-gradient(135deg,var(--yellow-300),var(--yellow-400));
+    color:#4a3b00;
+    box-shadow:0 4px 14px rgba(250,204,21,.4);
+  }
+  .btn-yellow:hover{box-shadow:0 6px 20px rgba(250,204,21,.55);}
+
+  /* ---------- LAYOUT ---------- */
+  main{max-width:1080px;margin:0 auto;padding:1.5rem 1.25rem 3rem;}
+
+  .section-label{
+    display:flex;align-items:center;gap:.6rem;
+    margin:1.9rem 0 .9rem;
+    font-size:.74rem;
+    font-weight:800;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--cyan-700);
+  }
+  .section-label::after{
+    content:"";flex:1;height:2px;border-radius:2px;
+    background:linear-gradient(90deg,var(--cyan-300),var(--yellow-200),transparent);
+  }
+
+  /* ---------- CARD ---------- */
+  .card{
+    background:#fff;
+    border-radius:16px;
+    border:1px solid var(--line);
+    border-left:5px solid var(--cyan-400);
+    margin-bottom:.7rem;
+    box-shadow:0 2px 10px rgba(8,145,178,.07);
+    overflow:hidden;
+    transition:box-shadow .25s, border-left-color .25s, transform .25s;
+  }
+  .card:hover{box-shadow:0 6px 22px rgba(8,145,178,.14);}
+  .card.open{
+    border-left-color:var(--yellow-400);
+    box-shadow:0 8px 28px rgba(8,145,178,.16);
+  }
+  .card.warn{border-left-color:var(--yellow-400);}
+  .card.avoid{border-left-color:#f59e0b;}
+
+  .card-head{
+    width:100%;
+    background:none;
+    border:none;
+    cursor:pointer;
+    font-family:inherit;
+    text-align:left;
+    padding:.95rem 1.1rem;
+    display:flex;
+    align-items:center;
+    gap:.75rem;
+    color:var(--ink);
+    transition:background .2s;
+  }
+  .card-head:hover{background:linear-gradient(90deg, var(--cyan-50), transparent 70%);}
+  .card-head:focus-visible{outline:3px solid var(--cyan-400); outline-offset:-3px;}
+
+  .icon{
+    flex:0 0 auto;
+    width:34px;height:34px;
+    border-radius:10px;
+    display:grid;place-items:center;
+    font-size:1rem;
+    background:linear-gradient(135deg,var(--cyan-100),var(--cyan-200));
+    color:var(--cyan-700);
+    transition:background .25s, color .25s;
+  }
+  .card.open .icon{
+    background:linear-gradient(135deg,var(--yellow-200),var(--yellow-300));
+    color:#5c4a00;
+  }
+
+  .head-text{flex:1;min-width:0;}
+  .head-text h2{
+    margin:0;
+    font-size:1rem;
+    font-weight:750;
+    letter-spacing:-.01em;
+  }
+  .head-text p{
+    margin:.12rem 0 0;
+    font-size:.78rem;
+    color:var(--muted);
+  }
+
+  .chev{
+    flex:0 0 auto;
+    width:24px;height:24px;
+    display:grid;place-items:center;
+    color:var(--cyan-600);
+    font-size:.85rem;
+    transition:transform .32s cubic-bezier(.4,0,.2,1), color .25s;
+  }
+  .card.open .chev{transform:rotate(180deg); color:var(--yellow-500);}
+
+  .card-body{
+    display:grid;
+    grid-template-rows:0fr;
+    transition:grid-template-rows .38s cubic-bezier(.4,0,.2,1);
+  }
+  .card.open .card-body{grid-template-rows:1fr;}
+  .card-inner{overflow:hidden;}
+  .card-content{
+    padding:.15rem 1.1rem 1.15rem;
+    font-size:.87rem;
+  }
+
+  /* ---------- CONTENT ELEMENTS ---------- */
+  .rec{
+    display:flex;
+    gap:.7rem;
+    padding:.62rem .8rem;
+    border-radius:11px;
+    background:linear-gradient(90deg, var(--cyan-50), #ffffff);
+    border:1px solid var(--cyan-100);
+    margin-bottom:.42rem;
+  }
+  .rec.yellow{
+    background:linear-gradient(90deg, var(--yellow-50), #ffffff);
+    border-color:var(--yellow-200);
+  }
+  .rec .tag{
+    flex:0 0 auto;
+    align-self:flex-start;
+    font-size:.66rem;
+    font-weight:800;
+    letter-spacing:.05em;
+    padding:.2rem .45rem;
+    border-radius:6px;
+    background:var(--cyan-500);
+    color:#fff;
+    margin-top:.12rem;
+    white-space:nowrap;
+  }
+  .rec.yellow .tag{background:var(--yellow-400);color:#4a3b00;}
+  .rec .txt{flex:1;min-width:0;}
+  .rec .txt strong{color:var(--cyan-700);}
+  .rec.yellow .txt strong{color:#a16207;}
+
+  .grade{
+    display:inline-block;
+    font-size:.65rem;
+    font-weight:800;
+    letter-spacing:.03em;
+    padding:.08rem .38rem;
+    border-radius:5px;
+    background:var(--cyan-100);
+    color:var(--cyan-700);
+    border:1px solid var(--cyan-200);
+    margin-left:.25rem;
+    vertical-align:1px;
+    white-space:nowrap;
+  }
+  .grade.weak{background:var(--yellow-100);color:#a16207;border-color:var(--yellow-200);}
+
+  .note{
+    font-size:.79rem;
+    color:var(--muted);
+    font-style:italic;
+    margin:.15rem 0 .7rem .1rem;
+  }
+
+  h4{
+    margin:1rem 0 .5rem;
+    font-size:.78rem;
+    text-transform:uppercase;
+    letter-spacing:.09em;
+    color:var(--cyan-700);
+    font-weight:800;
+  }
+  h4:first-child{margin-top:.3rem;}
+  h4.y{color:#a16207;}
+
+  /* ---------- TABLE ---------- */
+  .table-scroll{overflow-x:auto;border-radius:12px;border:1px solid var(--line);margin-bottom:.5rem;}
+  table{
+    width:100%;
+    border-collapse:collapse;
+    font-size:.8rem;
+    min-width:520px;
+    background:#fff;
+  }
+  thead th{
+    background:linear-gradient(135deg,var(--cyan-600),var(--cyan-500));
+    color:#fff;
+    text-align:left;
+    padding:.6rem .7rem;
+    font-size:.72rem;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+    font-weight:800;
+    position:sticky;top:0;
+  }
+  tbody td{
+    padding:.55rem .7rem;
+    border-bottom:1px solid var(--cyan-50);
+    vertical-align:top;
+  }
+  tbody tr:nth-child(even){background:#f8feff;}
+  tbody tr:hover{background:var(--yellow-50);}
+  tbody tr:last-child td{border-bottom:none;}
+  td.drug{font-weight:700;color:var(--cyan-700);white-space:nowrap;}
+  td.hi{color:#b45309;font-weight:700;}
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    margin-top:2.5rem;
+    padding:1.5rem 1.25rem 2.5rem;
+    background:linear-gradient(135deg,var(--cyan-900),var(--cyan-700));
+    color:#d9f6fb;
+    border-top:5px solid var(--yellow-400);
+  }
+  .foot-inner{max-width:1080px;margin:0 auto;font-size:.82rem;}
+  .foot-inner h3{
+    color:var(--yellow-300);
+    font-size:.78rem;
+    text-transform:uppercase;
+    letter-spacing:.11em;
+    margin:0 0 .55rem;
+  }
+  .cite{
+    background:rgba(255,255,255,.08);
+    border-left:4px solid var(--yellow-400);
+    border-radius:10px;
+    padding:.85rem 1rem;
+    line-height:1.6;
+    margin-bottom:1rem;
+  }
+  .cite a{color:var(--yellow-200);word-break:break-word;}
+  .disclaimer{
+    font-size:.75rem;
+    color:#9fd8e4;
+    border-top:1px solid rgba(255,255,255,.13);
+    padding-top:.9rem;
+    margin-top:.9rem;
+  }
+
+  .no-results{
+    display:none;
+    text-align:center;
+    padding:2rem 1rem;
+    color:var(--muted);
+    font-size:.9rem;
+  }
+  .no-results.show{display:block;}
+
+  mark{
+    background:var(--yellow-200);
+    color:inherit;
+    border-radius:3px;
+    padding:0 .1em;
+  }
+
+  @media (max-width:560px){
+    header{padding:1.6rem 1rem 2rem;}
+    .card-content{padding:.15rem .8rem 1rem;}
+    .card-head{padding:.85rem .8rem;}
+    .rec{flex-direction:column;gap:.35rem;}
+    .rec .tag{align-self:flex-start;}
+  }
+
+  @media print{
+    .toolbar,.chev{display:none;}
+    .card-body{grid-template-rows:1fr !important;}
+    .card{break-inside:avoid;box-shadow:none;}
+    body{background:#fff;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <span class="badge">ASRA Pain Medicine · 5th Edition</span>
+    <h1>Regional Anaesthesia in the Patient Receiving Antithrombotic or Thrombolytic Therapy</h1>
+    <p class="subtitle">Point-of-care quick reference for anaesthetists — drug-free intervals, catheter management and restart times. Tap any card to expand.</p>
+  </div>
+</header>
+
+<div class="toolbar">
+  <div class="toolbar-inner">
+    <div class="search">
+      <input type="search" id="search" placeholder="Search drug or topic (e.g. dabigatran, apixaban, catheter, fondaparinux)…" aria-label="Search guidelines">
+    </div>
+    <button class="btn btn-cyan" id="expandAll">Expand all</button>
+    <button class="btn btn-yellow" id="collapseAll">Collapse all</button>
+  </div>
+</div>
+
+<main>
+
+  <p class="no-results" id="noResults">No matching sections. Try another search term.</p>
+
+  <!-- ============ CORE PRINCIPLES ============ -->
+  <div class="section-label">Core Principles</div>
+
+  <div class="card" data-tags="principles methodology low dose high dose half life">
+    <button class="card-head" aria-expanded="false">
+      <span class="icon">⚙</span>
+      <span class="head-text">
+        <h2>How to Use These Guidelines</h2>
+        <p>Terminology, dosing philosophy &amp; evidence grading</p>
+      </span>
+      <span class="chev">▾</span>
+    </button>
+    <div class="card-body"><div class="card-inner"><div class="card-content">
+
+      <h4>Dose terminology — a key change</h4>
+      <div class="rec">
+        <span class="tag">NEW</span>
+        <span class="txt">Previous editions used <em>prophylactic</em> / <em>therapeutic</em>. The 5th edition uses <strong>“low dose”</strong> and <strong>“high dose”</strong> to align with other guidelines and reflect that the same milligram dose can be prophylactic in one patient and therapeutic in another.</span>
+      </div>
+      <p class="note">e.g. the same “high” DOAC dose may treat a DVT in one patient and prevent recurrent DVT in another. Reduced renal function, low body weight, advanced age, or P-gp inhibitors (ciclosporin, dronedarone, erythromycin, ketoconazole) can turn a “low” dose into a “high” dose.</p>
+
+      <h4>Pharmacokinetic rule of thumb</h4>
+      <div class="rec">
+        <span class="tag">2× t½</span>
+        <span class="txt"><strong>Low dose</strong> → wait <strong>2 half-lives</strong> (≈25% drug remaining) before neuraxial or deep plexus block.</span>
+      </div>
+      <div class="rec">
+        <span class="tag">5× t½</span>
+        <span class="txt"><strong>High dose</strong> → wait <strong>5 half-lives</strong> (≈3–6% drug remaining) before neuraxial or deep plexus block.</span>
+      </div>
+      <p class="note">Use renal-function–adjusted half-lives where relevant. Times assume normal renal function unless stated.</p>
+
+      <h4>Overall philosophy</h4>
+      <div class="rec yellow">
+        <span class="tag">KEY</span>
+        <span class="txt">ASRA PM takes an <strong>“antihaemorrhagic”</strong> stance — deliberately more conservative than thrombosis-prevention guidelines (ACCP, EHRA). The intent is near-complete resolution of antithrombotic effect before high-risk blockade.</span>
+      </div>
+      <div class="rec yellow">
+        <span class="tag">KEY</span>
+        <span class="txt">A neuraxial block is a <strong>high bleeding-risk procedure</strong> — not because of blood loss, but because bleeding occurs in a fixed, non-compressible space with potential for permanent neurological deficit.</span>
+      </div>
+
+      <h4>Evidence grading</h4>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Level</th><th>Basis</th></tr></thead>
+          <tbody>
+            <tr><td class="drug">I</td><td>Large observational series with very large risk reduction (no RCTs exist for this rare outcome)</td></tr>
+            <tr><td class="drug">II</td><td>Observational / epidemiological series</td></tr>
+            <tr><td class="drug">III</td><td>Case reports, pharmacology, expert opinion</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Strength</th><th>Meaning</th><th>Wording</th></tr></thead>
+          <tbody>
+            <tr><td class="drug">A</td><td>General agreement of efficacy</td><td>“We recommend”</td></tr>
+            <tr><td class="drug">B</td><td>Conflicting evidence / opinion</td><td>“We recommend”</td></tr>
+            <tr><td class="drug">C</td><td>Procedure may not be useful / possibly harmful</td><td>“We suggest”</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">“We recommend” = strong (IA/IB/IC). “We suggest” = weak (IIA/IIB/IIC). Most DOAC guidance is grade IIIC (expert opinion) — it will be revised as drug-specific assay data accumulate.</p>
+
+      <h4>Drug-specific assays</h4>
+      <div class="rec">
+        <span class="tag">ASSAY</span>
+        <span class="txt"><strong>Do NOT use PT or aPTT</strong> to assess residual DOAC effect — reagent sensitivity varies widely.</span>
+      </div>
+      <div class="rec">
+        <span class="tag">THRESHOLD</span>
+        <span class="txt">Consensus safe haemostatic threshold: <strong>DOAC plasma level &lt; 30 ng/mL</strong> or <strong>anti-Xa activity ≤ 0.1 IU/mL</strong> (dabigatran measured by dTT).</span>
+      </div>
+
+    </div></div></div>
+  </div>
+
+  <div class="card warn" data-tags="haematoma incidence risk factors epidemiology">
+    <button class="card-head" aria-expanded="false">
+      <span class="icon">⚠</span>
+      <span class="head-text">
+        <h2>Neuraxial Haematoma — Incidence &amp; Risk Factors</h2>
+        <p>Who is at highest risk and why</p>
+      </span>
+      <span class="chev">▾</span>
+    </button>
+    <div class="card-body"><div class="card-inner"><div class="card-content">
+
+      <h4>Incidence</h4>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Population</th><th>Estimated risk</th></tr></thead>
+          <tbody>
+            <tr><td>Epidural (traditional estimate)</td><td>&lt; 1 : 150,000</td></tr>
+            <tr><td>Spinal (traditional estimate)</td><td>&lt; 1 : 220,000</td></tr>
+            <tr><td>Obstetric epidural analgesia</td><td>≈ 1 : 200,000</td></tr>
+            <tr><td>All spinal anaesthetics (Sweden)</td><td>≈ 1 : 480,000</td></tr>
+            <tr><td>Hip fracture surgery under spinal</td><td>≈ 1 : 22,000</td></tr>
+            <tr><td class="hi">Elderly women, total knee replacement under epidural</td><td class="hi">≈ 1 : 3,600</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4>Risk factors (often additive, possibly synergistic)</h4>
+      <div class="rec yellow"><span class="tag">1</span><span class="txt"><strong>Age</strong> — especially elderly women (reduced vertebral canal compliance, osteoporotic deformity).</span></div>
+      <div class="rec yellow"><span class="tag">2</span><span class="txt"><strong>Spinal pathology</strong> — cord or vertebral column abnormalities.</span></div>
+      <div class="rec yellow"><span class="tag">3</span><span class="txt"><strong>Coagulopathy</strong> — existing or acquired (including HELLP).</span></div>
+      <div class="rec yellow"><span class="tag">4</span><span class="txt"><strong>Difficult / traumatic needle placement</strong> — bloody tap was an associated factor in ~50% of spinal haematomas.</span></div>
+      <div class="rec yellow"><span class="tag">5</span><span class="txt"><strong>Indwelling neuraxial catheter during continued anticoagulation</strong> — particularly UFH or LMWH. Half of IV-heparin–associated haematomas presented at the time of catheter removal.</span></div>
+      <div class="rec yellow"><span class="tag">6</span><span class="txt"><strong>Concurrent haemostasis-altering drugs</strong> — the additive effect of multiple agents cannot be overstated.</span></div>
+
+      <h4>Clinical pearls</h4>
+      <div class="rec"><span class="tag">PEARL</span><span class="txt">Presentation is typically <strong>lower extremity weakness</strong>, not radicular back pain.</span></div>
+      <div class="rec"><span class="tag">PEARL</span><span class="txt">Outcome depends on <strong>speed of diagnosis and decompression</strong> — only 5 of 33 patients in the Swedish series recovered neurologically, largely due to delayed diagnosis/intervention.</span></div>
+      <div class="rec"><span class="tag">PEARL</span><span class="txt">Obstetric patients have a markedly lower risk — likely due to hypercoagulability and a more compliant epidural space.</span></div>
+      <p class="note">Even with full guideline adherence, ~13% of spinal haematomas have no identifiable risk factor. Protocols for urgent MRI and haematoma evacuation must be in place.</p>
+
+    </div></div></div>
+  </div>
+
+  <!-- ============ AT-A-GLANCE ============ -->
+  <div class="section-label">At a Glance</div>
+
+  <div class="card open" data-tags="summary table overview intervals timing at a glance">
+    <button class="card-head" aria-expanded="true">
+      <span class="icon">★</span>
+      <span class="head-text">
+        <h2>Discontinuation Intervals — Master Table</h2>
+        <p>Minimum drug-free interval before neuraxial / deep plexus block</p>
+      </span>
+      <span class="chev">▾</span>
+    </button>
+    <div class="card-body"><div class="card-inner"><div class="card-content">
+
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr><th>Agent</th><th>Low dose</th><th>High dose</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="drug">Apixaban</td><td>36 h</td><td class="hi">72 h</td></tr>
+            <tr><td class="drug">Rivaroxaban</td><td>24 h (30 h if CrCl &lt; 30)</td><td class="hi">72 h</td></tr>
+            <tr><td class="drug">Edoxaban</td><td>No FDA-approved low dose</td><td class="hi">72 h</td></tr>
+            <tr><td class="drug">Dabigatran</td><td>48 h</td><td class="hi">72 h (CrCl ≥ 50)<br>120 h (CrCl 30–49)<br>Avoid if CrCl &lt; 30*</td></tr>
+            <tr><td class="drug">Warfarin</td><td>—</td><td class="hi">5 days + normal INR</td></tr>
+            <tr><td class="drug">UFH — IV</td><td>—</td><td class="hi">4–6 h + normal coagulation</td></tr>
+            <tr><td class="drug">UFH — SC</td><td>4–6 h (5000 U)<br>12 h (7500–10 000 U BD)</td><td class="hi">24 h (&gt; 10 000 U/dose or &gt; 20 000 U/day)</td></tr>
+            <tr><td class="drug">LMWH</td><td>12 h</td><td class="hi">24 h</td></tr>
+            <tr><td class="drug">Fondaparinux</td><td>36 h young / 42 h elderly<br>58 h if CrCl 30–50</td><td class="hi">70 h young / 105 h elderly (normal renal function)</td></tr>
+            <tr><td class="drug">Clopidogrel</td><td>5–7 days</td><td>—</td></tr>
+            <tr><td class="drug">Prasugrel</td><td>7–10 days</td><td>—</td></tr>
+            <tr><td class="drug">Ticagrelor</td><td>5 days</td><td>—</td></tr>
+            <tr><td class="drug">Cilostazol</td><td>2 days</td><td>—</td></tr>
+            <tr><td class="drug">Cangrelor</td><td>3 h</td><td>—</td></tr>
+            <tr><td class="drug">Thrombolytics</td><td>48 h + normal fibrinogen</td><td>—</td></tr>
+            <tr><td class="drug">Argatroban / bivalirudin / desirudin</td><td colspan="2" class="hi">Suggest AGAINST neuraxial technique</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">*Dabigatran with CrCl &lt; 30 mL/min: avoid neuraxial block unless a plasma level is obtained and is &lt; 30 ng/mL.</p>
+
+      <h4 class="y">Restarting after the block / catheter removal</h4>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Scenario</th><th>Restart</th></tr></thead>
+          <tbody>
+            <tr><td>Low dose (VTE prophylaxis)</td><td>6 h postoperatively</td></tr>
+            <tr><td>High dose (therapeutic)</td><td>≥ 24 h postoperatively</td></tr>
+            <tr><td>ACCP / EHRA — DOAC after low/moderate bleeding-risk procedure</td><td>24 h</td></tr>
+            <tr><td>ACCP / EHRA — DOAC after high bleeding-risk procedure</td><td>48–72 h, once surgical haemostasis achieved</td></tr>
+            <tr><td>Apixaban / rivaroxaban after <em>traumatic</em> neuraxial puncture</td><td>Delay 48 h (apixaban) / 24 h (rivaroxaban) per manufacturer</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div></div></div>
+  </div>
+
+  <!-- ============ DOACs ============ -->
+  <div class="section-label">Direct Oral Anticoagulants</div>
+
+  <div class="card" data-tags="apixaban eliquis doac high dose low dose 72 36">
+    <button class="card-head" aria-expanded="false">
+      <span class="icon">A</span>
+      <span class="head-text">
+        <h2>Apixaban (Eliquis)</h2>
+        <p>High dose 72 h · Low dose 36 h</p>
+      </span>
+      <span class="chev">▾</span>
+    </button>
+    <div class="card-body"><div class="card-inner"><div class="card-content">
+
+      <h4>High dose</h4>
+      <div class="rec"><span class="tag">STOP</span><span class="txt">Discontinue <strong>≥ 72 h</strong> prior to neuraxial or deep plexus/peripheral block. Consider checking apixaban or anti-Xa level if &lt; 72 h. <span class="grade weak">IIIC</span></span></div>
+      <div class="rec"><span class="tag">LEVEL</span><span class="txt">Residual apixaban plasma level <strong>&lt; 30 ng/mL</strong> or anti-Xa activity <strong>≤ 0.1 IU/mL</strong> is acceptable. <span class="grade weak">IIIC — NEW</span></span></div>
+      <div class="rec"><span class="tag">TIMING</span><span class="txt">Needle placement / catheter removal at least <strong>24 h before</strong> the first postoperative dose. <span class="grade weak">IIIC — NEW</span></span></div>
+      <div class="rec yellow"><span class="tag">UNPLANNED</span><span class="txt">If high-dose apixaban is given with a neuraxial catheter in situ: withhold apixaban for <strong>≥ 72 h</strong>, or document residual level &lt; 30 ng/mL / anti-Xa ≤ 0.1 IU/mL before catheter removal. <span class="grade weak">IIIC — NEW</span></span></div>
+
+      <h4 class="y">Low dose</h4>
+      <div class="rec yellow"><span class="tag">STOP</span><span class="txt">Discontinue <strong>≥ 36 h</strong> prior. Consider checking level if &lt; 36 h. <span class="grade weak">IIIC — NEW</span></span></div>
+      <div class="rec yellow"><span class="tag">LEVEL</span><span class="txt">Residual apixaban &lt; 30 ng/mL or anti-Xa ≤ 0.1 IU/mL acceptable. <span class="grade weak">IIIC — NEW</span></span></div>
+      <div class="rec yellow"><span class="tag">TIMING</span><span class="txt">Needle placement / catheter removal at least <strong>6 h before</strong> the first postoperative dose. <span class="grade weak">IIIC</span></span></div>
+      <div class="rec yellow"><span class="tag">UNPLANNED</span><span class="txt">If low-dose apixaban given with catheter in situ: withhold ≥ 36 h or document acceptable level before removal. <span class="grade weak">IIIC — NEW</span></span></div>
+
+      <p class="note">FDA labelling warns that prolonged use of indwelling neuraxial catheters may increase the risk of spinal/epidural bleeding, and all manufacturers emphasise the risk at catheter removal.</p>
+
+    </div></div></div>
+  </div>
+
+  <div class="card" data-tags="rivaroxaban xarelto doac high low 72 24 30">
+    <button class="card-head" aria-expanded="false">
+      <span class="icon">R</span>
+      <span class="head-text">
+        <h2>Rivaroxaban (Xarelto)</h2>
+        <p>High dose 72 h · Low dose 24 h (30 h if CrCl &lt; 30)</p>
+      </span>
+      <span class="chev">▾</span>
+    </button>
+    <div class="card-body"><div class="card-inner"><div class="card-content">
+
+      <h4>High dose</h4>
+      <div class="rec"><span class="tag">STOP</span><span class="txt">Discontinue <strong>≥ 72 h</strong> prior. Consider checking rivaroxaban or anti-Xa level if &lt; 72 h. <span class="grade weak">IIIC</span></span></div>
+      <div class="rec"><span class="tag">LEVEL</span><span class="txt">Residual level <strong>&lt; 30 ng/mL</strong> or anti-Xa <strong>≤ 0.1 IU/mL</strong> acceptable. <span class="grade weak">IIIC — NEW</span></span></div>
+      <div class="rec"><span class="tag">TIMING</span><span class="txt">Needle placement / catheter removal ≥ <strong>24 h before</strong> first postoperative dose. <span class="grade weak">IIIC — NEW</span></span></div>
+      <div class="rec yellow"><span class="tag">UNPLANNED</span><span class="txt">High dose with catheter in situ: withhold ≥ 72 h or document level &lt; 30 ng/mL / anti-Xa ≤ 0.1 IU/mL before removal. <span class="grade weak">IIIC — NEW</span></span></div>
+
+      <h4 class="y">Low dose</h4>
+      <div class="rec yellow"><span class="tag">STOP</span><span class="txt">Discontinue <strong>≥ 24 h</strong> (or <strong>30 h if CrCl &lt; 30 mL/min</strong>) prior. Consider checking level if &lt; 24 h. <span class="grade weak">IIIC — NEW</span></span></div>
+      <div class="rec yellow"><span class="tag">LEVEL</span><span class="txt">Residual level &lt; 30 ng/mL or anti-Xa ≤ 0.1 IU/mL acceptable. <span class="grade weak">IIIC — NEW</span></span></div>
+      <div class="rec yellow"><span class="tag">TIMING</span><span class="txt">Needle placement / catheter removal ≥ <strong>6 h before</strong> first postoperative dose. <span class="grade weak">IIIC</span></span></div>
+      <div class="rec yellow"><span class="tag">UNPLANNED</span><span class="txt">Low dose with catheter in situ: withhold ≥ 24 h (30 h if CrCl &lt; 30) or document acceptable level before removal. <span class="grade weak">IIIC — NEW</span></span></div>
+
+    </div></div></div>
+  </div>
+
+  <div class="card" data-tags="edoxaban savaysa lixiana doac high dose 72">
+    <button class="card-head" aria-expanded="false">
+      <span class="icon">E</span>
+      <span class="head-text">
+        <h2>Edoxaban (Savaysa / Lixiana)</h2>
+        <p>High dose 72 h · No FDA-approved low dose indication</p>
+      </span>
+      <span class="chev">▾</span>
+    </button>
+    <div class="card-body"><div class="card-inner"><div class="card-content">
+
+      <h4>High dose</h4>
+      <div class="rec"><span class="tag">STOP</span><span class="txt">Discontinue <strong>≥ 72 h</strong> prior. Consider checking edoxaban or anti-Xa level if &lt; 72 h. <span class="grade weak">IIIC</span></span></div>
+      <div class="rec"><span class="tag">LEVEL</span><span class="txt">Residual level <strong>&lt; 30 ng/mL</strong> or anti-Xa <strong>≤ 0.1 IU/mL</strong> acceptable. <span class="grade weak">IIIC — NEW</span></span></div>
+      <div class="rec"><span class="tag">TIMING</span><span class="txt">Needle placement / catheter removal ≥ <strong>24 h before</strong> first postoperative dose. <span class="grade weak">IIIC — NEW</span></span></div>
+      <div class="rec yellow"><span class="tag">UNPLANNED</span><span class="txt">High dose with catheter in situ: withhold ≥ 72 h or document acceptable level before removal. <span class="grade weak">IIIC — NEW</span></span></div>
+
+      <h4 class="y">Low dose</h4>
+      <div class="rec yellow"><span class="tag">NOTE</span><span class="txt">There is <strong>no FDA-approved medical indication for low-dose edoxaban</strong>.</span></div>
+
+      <p class="note">Recommendations are based on pharmacokinetic profile and expert opinion — prospective data for edoxaban are lacking.</p>
+
+    </div></div></div>
+  </div>
+
+  <div class="card warn" data-tags="dabigatran pradaxa doac renal crcl 72 120 48">
+    <button class="card-head" aria-expanded="false">
+      <span class="icon">D</span>
+      <span class="head-text">
+        <h2>Dabigatran (Pradaxa)</h2>
+        <p>Renal function dependent — 72 h / 120 h / 48 h</p>
+      </span>
+      <span class="chev">▾</span>
+    </button>
+    <div class="card-body"><div class="card-inner"><div class="card-content">
+
+      <h4>High dose</h4>
+      <div class="rec yellow"><span class="tag">CrCl ≥ 50</span><span class="txt">Discontinue <strong>≥ 72 h</strong> prior. Consider checking dabigatran plasma level if &lt; 72 h. <span class="grade weak">IIIC — NEW</span></span></div>
+      <div class="rec yellow"><span class="tag">CrCl 30–49</span><span class="txt">Discontinue <strong>120 h</strong> prior. Consider checking dabigatran plasma level if &lt; 120 h. <span class="grade weak">IIIC — NEW</span></span></div>
+      <div class="rec yellow"><span class="tag">CrCl &lt; 30</span><span class="txt"><strong>Suggest against</strong> neuraxial or deep plexus/peripheral block unless a dabigatran plasma level is obtained and is <strong>&lt; 30 ng/mL</strong>. <span class="grade weak">IIIC — NEW</span></span></div>
+      <div class="rec"><span class="tag">LEVEL</span><span class="txt">Residual dabigatran plasma level <strong>&lt; 30 ng/mL</strong> acceptable prior to block. <span class="grade weak">IIIC — NEW</span></span></div>
+      <div class="rec"><span class="tag">TIMING</span><span class="txt">Needle placement / catheter removal ≥ <strong>24 h before</strong> first postoperative dose. <span class="grade weak">IIIC — NEW</span></span></div>
+      <div class="rec yellow"><span class="tag">UNPLANNED</span><span class="txt">High dose with catheter in situ: withhold ≥ <strong>72 h</strong> (or 120 h if CrCl 30–49) or document level &lt; 30 ng/mL before removal. <span class="grade weak">IIIC — NEW</span></span></div>
+
+      <h4 class="y">Low dose</h4>
+      <div class="rec yellow"><span class="tag">STOP</span><span class="txt">Discontinue <strong>≥ 48 h</strong> prior. Consider checking level if &lt; 48 h. <span class="grade weak">IIIC — NEW</span></span></div>
+      <div class="rec yellow"><span class="tag">LEVEL</span><span class="txt">Residual level <strong>&lt; 30 ng/mL</strong> acceptable. <span class="grade weak">IIIC — NEW</span></span></div>
+      <div class="rec yellow"><span class="tag">CrCl &lt; 30</span><span class="txt">Suggest against block unless level obtained and &lt; 30 ng/mL. <span class="grade weak">IIIC — NEW</span></span></div>
+      <div class="rec yellow"><span class="tag">TIMING</span><span class="txt">Needle placement / catheter removal ≥ <strong>6 h before</strong> first postoperative dose. <span class="grade weak">IIIC</span></span></div>
+      <div class="rec yellow"><span class="tag">UNPLANNED</span><span class="txt">Low dose with catheter in situ: withhold ≥ 48 h or document level &lt; 30 ng/mL before removal. <span class="grade weak">IIIC — NEW</span></span></div>
+
+      <h4 class="y">Supporting evidence</h4>
+      <p class="note">PAUSE trial (n = 3007): after a mean dabigatran-free interval of 63.2 h (CrCl ≥ 50) or 110.2 h (CrCl &lt; 50), 98.9% had residual levels &lt; 30 ng/mL. No spinal haematomas occurred among 230 patients who received a neuraxial block.</p>
+
+    </div></div></div>
+  </div>
+
+  <!-- ============ WARFARIN ============ -->
+  <div class="section-label">Vitamin K Antagonists</div>
+
+  <div class="card" data-tags="warfarin coumadin inr vitamin k vka 5 days">
+    <button class="card-head" aria-expanded="false">
+      <span class="icon">W</span>
+      <span class="head-text">
+        <h2>Warfarin</h2>
+        <p>Stop 5 days · INR must normalise</p>
+      </span>
+      <span class="chev">▾</span>
+    </button>
+    <div class="card-body"><div class="card-inner"><div class="card-content">
+
+      <h4>Before the block</h4>
+      <div class="rec"><span class="tag">STOP</span><span class="txt">Stop anticoagulant <strong>5 days</strong> before the planned procedure; measure INR and confirm it has normalised (per local laboratory range) before needle placement. <span class="grade">IB</span></span></div>
+      <div class="rec"><span class="tag">CHECK</span><span class="txt">If an initial warfarin dose was given &gt; 24 h earlier, or a second dose has been administered, check INR before needle placement. <span class="grade weak">IIIC</span></span></div>
+
+      <h4>Epidural catheter in situ</h4>
+      <div class="rec"><span class="tag">MONITOR</span><span class="txt">Check INR <strong>daily</strong> in patients receiving low-dose warfarin during epidural analgesia. <span class="grade weak">IIIC</span></span></div>
+      <div class="rec"><span class="tag">REMOVE</span><span class="txt">Remove neuraxial catheter when <strong>INR &lt; 1.5</strong>. <span class="grade weak">IIIC</span></span></div>
+      <div class="rec yellow"><span class="tag">CAUTION</span><span class="txt">INR &gt; 1.5 but &lt; 3: risk of maintaining the catheter is unknown — maintain or remove with caution, closely following INR and duration of warfarin therapy. <span class="grade weak">IIIC</span></span></div>
+      <div class="rec yellow"><span class="tag">HOLD</span><span class="txt">INR &gt; 3: hold or reduce the warfarin dose in patients with indwelling neuraxial catheters. <span class="grade">IA</span></span></div>
+      <div class="rec"><span class="tag">MONITOR</span><span class="txt">Continue neurological assessment for at least <strong>48 h</strong> following catheter removal. <span class="grade weak">IIIC</span></span></div>
+      <div class="rec"><span class="tag">PEARL</span><span class="txt">Tailor the analgesic solution to <strong>minimise sensory and motor blockade</strong> so neurological assessment remains reliable. <span class="grade">IC</span></span></div>
+
+      <h4>Pharmacology notes</h4>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Factor</th><th>Half-life (hours)</th></tr></thead>
+          <tbody>
+            <tr><td class="drug">VII</td><td>6–8</td></tr>
+            <tr><td class="drug">IX</td><td>24</td></tr>
+            <tr><td class="drug">X</td><td>25–60</td></tr>
+            <tr><td class="drug">II (thrombin)</td><td>50–80</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">INR is most sensitive to factors VII and X. INR 1.5 ≈ factor VII activity of 40%. INR ≤ 1.4 is generally not associated with increased spinal bleeding risk. Warfarin dose is inversely related to age and higher in women; renal insufficiency increases response.</p>
+
+      <h4>Bridging</h4>
+      <div class="rec"><span class="tag">NO BRIDGE</span><span class="txt">ACCP recommends <strong>against</strong> heparin bridging for low-to-moderate thromboembolic risk patients.</span></div>
+      <div class="rec yellow"><span class="tag">BRIDGE</span><span class="txt">Consider bridging if arterial thrombosis risk &gt; 10%/year or VTE risk &gt; 10%/month — start LMWH once INR falls below the lower end of target range. Use IV UFH instead in severe kidney disease.</span></div>
+      <p class="note">Mechanical mitral valve, older-generation aortic valve, or aortic valve plus additional risk factors → bridging with LMWH is reasonable. Bileaflet aortic valve without risk factors → bridging can be avoided.</p>
+
+    </div></div></div>
+  </div>
+
+  <!-- ============ HEPARINS ============ -->
+  <div class="section-label">Heparins</div>
+
+  <div class="card" data-tags="unfractionated heparin ufh intravenous iv subcutaneous sc protamine hit">
+    <button class="card-head" aria-expanded="false">
+      <span class="icon">H</span>
+      <span class="head-text">
+        <h2>Unfractionated Heparin (UFH)</h2>
+        <p>IV and subcutaneous dosing</p>
+      </span>
+      <span class="chev">▾</span>
+    </button>
+    <div class="card-body"><div class="card-inner"><div class="card-content">
+
+      <h4>General</h4>
+      <div class="rec"><span class="tag">REC</span><span class="txt">Daily review of the medical record to determine concurrent use of other haemostasis-altering drugs (antiplatelets, LMWH, oral anticoagulants). <span class="grade">IB</span></span></div>
+      <div class="rec"><span class="tag">REC</span><span class="txt">Patients receiving IV or SC UFH for <strong>&gt; 4 days</strong> should have a platelet count assessed before needle placement (heparin-induced thrombocytopenia). <span class="grade">IC</span></span></div>
+      <p class="note">HIT typically onsets 5–14 days after initiation, but rapid-onset HIT can occur with re-exposure within 30 days; delayed-onset HIT may present days to weeks after discharge.</p>
+
+      <h4>Intravenous heparin</h4>
+      <div class="rec"><span class="tag">STOP</span><span class="txt">Discontinue heparin infusion for a minimum of <strong>4–6 h</strong> and confirm coagulation status is normal prior to neuraxial or deep plexus/peripheral block. <span class="grade">IA</span></span></div>
+      <div class="rec"><span class="tag">DELAY</span><span class="txt">Delay IV heparin administration for a minimum of <strong>1 h after needle placement</strong>. <span class="grade">IA</span></span></div>
+      <div class="rec"><span class="tag">CATHETER</span><span class="txt">Remove indwelling neuraxial catheters <strong>4–6 h after the last heparin dose</strong> (and after assessment of coagulation status); re-heparinise 1 h after catheter removal. <span class="grade">IA</span></span></div>
+      <div class="rec"><span class="tag">MONITOR</span><span class="txt">Monitor postoperatively for early detection of motor blockade; consider minimal local anaesthetic concentrations to enhance early detection of spinal haematoma. <span class="grade">IA</span></span></div>
+      <div class="rec yellow"><span class="tag">BLOODY TAP</span><span class="txt">A bloody or difficult neuraxial needle placement may increase risk, but there are <strong>no data supporting mandatory cancellation</strong>. Communicate directly with the surgeon and make an individual risk–benefit decision. <span class="grade">IA</span></span></div>
+      <div class="rec yellow"><span class="tag">CARDIAC</span><span class="txt">Do <strong>not</strong> maintain neuraxial or deep plexus/peripheral catheters during full anticoagulation for cardiac surgery. If unanticipated heparinisation occurs, monitor neurological status postoperatively and use minimal local anaesthetic concentrations. <span class="grade weak">IIIC — CHANGED</span></span></div>
+
+      <h4 class="y">Cardiopulmonary bypass</h4>
+      <div class="rec yellow"><span class="tag">AVOID</span><span class="txt">Neuraxial anaesthetics are <strong>not recommended</strong> in the setting of high-dose anticoagulation and cardiopulmonary bypass. Estimated haematoma risk ≈ 1:1528 epidural and 1:3610 spinal, with no reduction in hospital stay, MI or mortality.</span></div>
+
+      <h4>Subcutaneous UFH — preoperative</h4>
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Dose</th><th>Minimum interval before needle placement</th></tr></thead>
+          <tbody>
+            <tr><td class="drug">5000 U BD or TDS</td><td>4–6 h after administration, or normal coagulation status <span class="grade weak">IIIC</span></td></tr>
+            <tr><td class="drug">7500–10 000 U BD, or ≤ 20 000 U/day</td><td>12 h + confirmation of normal coagulation <span class="grade weak">IIIC</span></td></tr>
+            <tr><td class="drug">&gt; 10 000 U per dose, or &gt; 20 000 U/day</td><td class="hi">24 h + confirmation of normal coagulation <span class="grade weak">IIIC</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4>Subcutaneous UFH — postoperative</h4>
+      <div class="rec"><span class="tag">LOW DOSE</span><span class="txt">No contraindication to maintaining neuraxial catheters with low-dose UFH. Remove catheter a minimum of <strong>4–6 h after heparin administration</strong>; subsequent heparin may be given immediately after catheter removal. <span class="grade weak">IIIC</span></span></div>
+      <div class="rec yellow"><span class="tag">HIGH DOSE</span><span class="txt">Safety of indwelling catheters with &gt; 5000 U per dose or &gt; 15 000 U daily is <strong>not established</strong>. Assess risk/benefit individually and use enhanced neurological monitoring with solutions that minimise sensory and motor block. <span class="grade weak">IIIC</span></span></div>
+
+      <p class="note">Low-dose SC UFH does not significantly prolong aPTT in most patients, but ~15% develop measurable coagulation changes and 2–4% may become therapeutically anticoagulated. Protamine reverses heparin (1 mg per 100 units) but carries thrombotic risk.</p>
+
+    </div></div></div>
+  </div>
+
+  <div class="card" data-tags="lmwh enoxaparin dalteparin tinzaparin low molecular weight heparin anti-xa">
+    <button class="card-head" aria-expanded="false">
+      <span class="icon">L</span>
+      <span class="head-text">
+        <h2>Low Molecular Weight Heparin (LMWH)</h2>
+        <p>Low dose 12 h · High dose 24 h</p>
+      </span>
+      <span class="chev">▾</span>
+    </button>
+    <div class="card-body"><div class="card-inner"><div class="card-content">
+
+      <h4>General</h4>
+      <div class="rec"><span class="tag">NO ROUTINE</span><span class="txt">Anti-Xa level is <strong>not predictive of bleeding risk</strong>; recommend against routine anti-Xa monitoring (may be useful for efficacy of high-dose therapy). <span class="grade">IC</span></span></div>
+      <div class="rec"><span class="tag">PLATELETS</span><span class="txt">Patients receiving LMWH for &gt; 4 days should have a platelet count assessed prior to needle placement. <span class="grade">IC</span></span></div>
+      <div class="rec"><span class="tag">BLOODY TAP</span><span class="txt">Blood during needle/catheter placement does not necessitate postponing surgery; delay initiation of LMWH for <strong>24 h postoperatively</strong> and discuss with the surgeon. <span class="grade weak">IIIC</span></span></div>
+
+      <h4>Preoperative</h4>
+      <div class="rec"><span class="tag">LOW</span><span class="txt">Needle placement at least <strong>12 h</strong> after low-dose LMWH. <span class="grade">IC</span></span></div>
+      <div class="rec"><span class="tag">ASSAY</span><span class="txt">Consider checking anti-Xa if &lt; 12 h. Acceptable residual level remains undetermined; suggest <strong>anti-Xa ≤ 0.1 IU/mL</strong>. <span class="grade weak">IIIC — NEW</span></span></div>
+      <div class="rec yellow"><span class="tag">HIGH</span><span class="txt">Delay at least <strong>24 h</strong> after high (therapeutic) dose before needle/catheter placement. <span class="grade">IC</span></span></div>
+      <div class="rec yellow"><span class="tag">ASSAY</span><span class="txt">Consider checking anti-Xa if &lt; 24 h — particularly in elderly patients (&gt; 75 years) and renal insufficiency (CrCl ≤ 30 mL/min). Suggest anti-Xa ≤ 0.1 IU/mL. <span class="grade weak">IIIC — NEW</span></span></div>
+      <p class="note">With high-dose LMWH, the last dose should be halved in moderate-to-severe renal insufficiency to avoid an exaggerated or prolonged response.</p>
+
+      <h4>Postoperative</h4>
+      <div class="rec"><span class="tag">COMBINED</span><span class="txt">Recommend against concomitant administration of other haemostasis-altering drugs (antiplatelets, standard heparin, dextran) with LMWH when a neuraxial catheter is indwelling. <span class="grade">IA</span></span></div>
+      <div class="rec"><span class="tag">BD LOW</span><span class="txt">First dose the <strong>following day</strong> and at least <strong>12 h after needle/catheter placement</strong>. Remove indwelling catheters <em>before</em> initiating LMWH. Delay LMWH for <strong>4 h after catheter removal</strong>. <span class="grade">IC</span></span></div>
+      <div class="rec"><span class="tag">OD LOW</span><span class="txt">First dose at least <strong>12 h</strong> after needle/catheter placement; second dose no sooner than 24 h after the first. Indwelling catheters may be maintained. Remove catheter <strong>12 h after the last LMWH dose</strong>; subsequent LMWH at least 4 h after removal. <span class="grade">IC</span></span></div>
+      <div class="rec yellow"><span class="tag">HIGH</span><span class="txt">Resume <strong>24 h</strong> after non-high-bleeding-risk surgery, <strong>48–72 h</strong> after high-bleeding-risk surgery. Remove indwelling catheters 4 h before the first postoperative dose, and the first dose should be at least 24 h after needle/catheter placement — whichever is greater. <span class="grade">IC</span></span></div>
+
+      <h4 class="y">Practical notes</h4>
+      <p class="note">Anti-Xa peaks 3–5 h after administration; elimination half-life ≈ 5 h (up to 16 h in severe renal insufficiency). Protamine only partially reverses LMWH — anti-Xa activity is not fully neutralised and may rebound. Observational data show a significant proportion of patients still have detectable anti-Xa ≥ 24 h after high-dose enoxaparin; a 2023 trial found the time to fall below 0.2 IU/mL was 31.5 h.</p>
+
+    </div></div></div>
+  </div>
+
+  <!-- ============ FONDAPARINUX ============ -->
+  <div class="section-label">Parenteral Anti-Xa</div>
+
+  <div class="card" data-tags="fondaparinux arixtra pentasaccharide renal 36 42 58 70 105">
+    <button class="card-head" aria-expanded="false">
+      <span class="icon">F</span>
+      <span class="head-text">
+        <h2>Fondaparinux (Arixtra)</h2>
+        <p>Long half-life — renal function determines timing</p>
+      </span>
+      <span class="chev">▾</span>
+    </button>
+    <div class="card-body"><div class="card-inner"><div class="card-content">
+
+      <h4>Low dose (2.5 mg once daily)</h4>
+      <div class="rec"><span class="tag">HOLD</span><span class="txt"><strong>36 h</strong> (young patients) to <strong>42 h</strong> (elderly) in healthy patients with normal renal function. <span class="grade weak">IIIC — NEW</span></span></div>
+      <div class="rec yellow"><span class="tag">CrCl 30–50</span><span class="txt">Hold for a minimum of <strong>58 h</strong> in moderate renal insufficiency. <span class="grade weak">IIIC — NEW</span></span></div>
+      <div class="rec yellow"><span class="tag">CrCl &lt; 30</span><span class="txt"><strong>Do not perform</strong> neuraxial or deep plexus/peripheral block — half-life is ~72 h. <span class="grade weak">IIIC — NEW</span></span></div>
+      <div class="rec"><span class="tag">ASSAY</span><span class="txt">If considering needle placement before these times, test anti-Xa calibrated to fondaparinux (<strong>≤ 0.1 IU/mL</strong>). <span class="grade weak">IIIC — NEW</span></span></div>
+
+      <h4>High dose (5–10 mg once daily)</h4>
+      <div class="rec yellow"><span class="tag">HOLD</span><span class="txt">Minimum <strong>70 h</strong> in young patients with normal renal function. <span class="grade weak">IIIC — NEW</span></span></div>
+      <div class="rec yellow"><span class="tag">HOLD</span><span class="txt">Minimum <strong>105 h</strong> in elderly patients with normal renal function. <span class="grade weak">IIIC — NEW</span></span></div>
+      <div class="rec"><span class="tag">ASSAY</span><span class="txt">Test anti-Xa calibrated to fondaparinux if placing needle earlier (≤ 0.1 IU/mL). <span class="grade weak">IIIC — NEW</span></span></div>
+
+      <h4>Catheter</h4>
+      <div class="rec"><span class="tag">REMOVE</span><span class="txt">Remove neuraxial catheters at least <strong>6 h before</strong> the first postoperative dose. <span class="grade weak">IIIC</span></span></div>
+
+      <p class="note">Half-life 17 h (healthy young) to 21 h (healthy elderly); 29 h in moderate renal impairment; 72 h in severe renal impairment. PT/aPTT are insensitive — use anti-Xa with a fondaparinux calibrator. Protamine is <strong>not</strong> an effective reversal strategy. Contraindicated if CrCl &lt; 30 mL/min or weight &lt; 50 kg.</p>
+
+    </div></div></div>
+  </div>
+
+  <!-- ============ ANTIPLATELETS ============ -->
+  <div class="section-label">Antiplatelet Agents</div>
+
+  <div class="card" data-tags="aspirin nsaids ibuprofen naproxen celecoxib antiplatelet">
+    <button class="card-head" aria-expanded="false">
+      <span class="icon">S</span>
+      <span class="head-text">
+        <h2>Aspirin &amp; NSAIDs</h2>
+        <p>No added risk — no timing restrictions</p>
+      </span>
+      <span class="chev">▾</span>
+    </button>
+    <div class="card-body"><div class="card-inner"><div class="card-content">
+
+      <div class="rec"><span class="tag">REC</span><span class="txt">NSAIDs (including aspirin) do <strong>not</strong> create a level of risk that interferes with neuraxial or deep plexus/peripheral blocks. No specific concerns regarding timing of single-injection or catheter techniques, postoperative monitoring, or catheter removal. <span class="grade">IC</span></span></div>
+      <p class="note">Low-dose aspirin (81–325 mg/day) theoretically poses a greater bleeding risk than higher doses because higher doses also inhibit endothelial prostacyclin production. NSAIDs alone do not significantly increase spinal haematoma risk — but combination with UFH, LMWH, oral anticoagulants or thrombolytics does.</p>
+      <p class="note">Exception: patients undergoing invasive pain procedures may be at higher risk. Celecoxib does not cause platelet dysfunction (COX-2 is not expressed in platelets). Non-aspirin NSAIDs produce a short-term defect that normalises within 3 days.</p>
+
+    </div></div></div>
+  </div>
+
+  <div class="card" data-tags="clopidogrel prasugrel thienopyridine p2y12 plavix effient">
+    <button class="card-head" aria-expanded="false">
+      <span class="icon">T</span>
+      <span class="head-text">
+        <h2>Thienopyridines — Clopidogrel &amp; Prasugrel</h2>
+        <p>Clopidogrel 5–7 days · Prasugrel 7–10 days</p>
+      </span>
+      <span class="chev">▾</span>
+    </button>
+    <div class="card-body"><div class="card-inner"><div class="card-content">
+
+      <div class="rec"><span class="tag">STOP</span><span class="txt">Suggested interval between discontinuation and needle placement: <strong>5–7 days</strong> for clopidogrel, <strong>7–10 days</strong> for prasugrel. <span class="grade weak">IIC</span></span></div>
+      <p class="note">The shorter end of each range reflects labelling and the fact that most patients have significant (though partial) platelet recovery by then. Patients at high bleeding risk require the longer interval for complete recovery. A pharmacological study showed ≥ 90% return to baseline reactivity by day 6 (clopidogrel) and day 9 (prasugrel).</p>
+
+      <div class="rec yellow"><span class="tag">CATHETER</span><span class="txt">Neuraxial and deep plexus/peripheral catheters should <strong>not</strong> be maintained with prasugrel</span> (rapid onset).</span></div>
+      <div class="rec"><span class="tag">CATHETER</span><span class="txt">Clopidogrel catheters may be maintained for <strong>1–2 days</strong>, provided a loading dose is not administered. <span class="grade weak">IIC</span></span></div>
+      <div class="rec"><span class="tag">RESUME</span><span class="txt">Thienopyridine therapy may be resumed immediately after needle placement/catheter removal, provided a loading dose is <strong>not</strong> given. If a loading dose is used, allow a <strong>6 h</strong> interval between catheter removal and administration. <span class="grade weak">IIC</span></span></div>
+
+      <p class="note">Platelet function assays (PFA-II, P2Y12) can assess residual effect, but only a normalised value is useful — an acceptable residual level remains undetermined. Three spinal haematomas have been attributed to neuraxial techniques plus thienopyridines.</p>
+
+    </div></div></div>
+  </div>
+
+  <div class="card" data-tags="ticagrelor brilinta p2y12 reversible 5 days">
+    <button class="card-head" aria-expanded="false">
+      <span class="icon">T</span>
+      <span class="head-text">
+        <h2>Ticagrelor (Brilinta)</h2>
+        <p>Stop 5 days</p>
+      </span>
+      <span class="chev">▾</span>
+    </button>
+    <div class="card-body"><div class="card-inner"><div class="card-content">
+
+      <div class="rec"><span class="tag">STOP</span><span class="txt">Recommended interval between discontinuation and needle placement is <strong>5 days</strong>. <span class="grade weak">2C — CHANGED</span></span></div>
+      <p class="note">Previous guidance was 5–7 days. The new interval reflects labelling and pharmacological data on platelet function recovery (70% recovery at 3 days, baseline at 5 days). Note: ACCP recommends 3–5 days based on expert opinion; ASRA PM remains more conservative.</p>
+      <div class="rec yellow"><span class="tag">CATHETER</span><span class="txt">Neuraxial catheters should <strong>not</strong> be maintained with ticagrelor due to rapid onset. <span class="grade weak">IIC</span></span></div>
+      <div class="rec"><span class="tag">RESUME</span><span class="txt">May be resumed immediately after needle placement/catheter removal if no loading dose is given. If a loading dose is used, allow <strong>6 h</strong>. <span class="grade weak">IIC</span></span></div>
+
+    </div></div></div>
+  </div>
+
+  <div class="card" data-tags="cangrelor kengreal p2y12 iv short acting bridge 3 hours">
+    <button class="card-head" aria-expanded="false">
+      <span class="icon">C</span>
+      <span class="head-text">
+        <h2>Cangrelor (Kengreal)</h2>
+        <p>Stop 3 h · Catheter removal before restart</p>
+      </span>
+      <span class="chev">▾</span>
+    </button>
+    <div class="card-body"><div class="card-inner"><div class="card-content">
+
+      <div class="rec"><span class="tag">STOP</span><span class="txt">Based on elimination half-life, avoid needle placement for <strong>3 h</strong> after discontinuation (preferably longer). <span class="grade weak">IIC</span></span></div>
+      <div class="rec"><span class="tag">CATHETER</span><span class="txt">Remove neuraxial and deep plexus/peripheral catheters <strong>prior to</strong> reinstitution of cangrelor. <span class="grade weak">IIC</span></span></div>
+      <div class="rec"><span class="tag">RESUME</span><span class="txt">First postoperative dose <strong>8 h</strong> after catheter removal. <span class="grade weak">IIC</span></span></div>
+
+      <p class="note">Direct, reversible IV P2Y12 inhibitor. Half-life 3–6 min; 80% and 90% of platelet function recovers at 60 and 90 min respectively. Because clopidogrel and prasugrel metabolites cannot bind while cangrelor occupies the receptor, they should be given immediately after cangrelor discontinuation; ticagrelor binds at a separate site and can be given during or immediately after the infusion.</p>
+
+    </div></div></div>
+  </div>
+
+  <div class="card" data-tags="abciximab eptifibatide tirofiban gp iib iiia reopro integrilin aggrastat">
+    <button class="card-head" aria-expanded="false">
+      <span class="icon">G</span>
+      <span class="head-text">
+        <h2>Platelet GP IIb/IIIa Inhibitors</h2>
+        <p>Abciximab · Eptifibatide · Tirofiban</p>
+      </span>
+      <span class="chev">▾</span>
+    </button>
+    <div class="card-body"><div class="card-inner"><div class="card-content">
+
+      <div class="rec"><span class="tag">AVOID</span><span class="txt">Avoid needle placement until platelet function has recovered. Time to normal aggregation: <strong>24–48 h for abciximab</strong>, <strong>4–8 h for eptifibatide and tirofiban</strong>. Use caution in patients on dual therapy with residual NSAID effect. <span class="grade">IC</span></span></div>
+      <div class="rec yellow"><span class="tag">POSTOP</span><span class="txt">Although contraindicated within 4 weeks of surgery, if emergently administered postoperatively following a neuraxial or deep plexus/peripheral technique, limit the neuraxial infusion to drugs minimising sensory and motor block and monitor neurologically. <span class="grade">IC</span></span></div>
+      <div class="rec"><span class="tag">CATHETER</span><span class="txt">Timing of catheter removal is based on ongoing thromboembolic risk, need for continued antithrombotic therapy, and potential for spinal bleeding during maintenance and removal. <span class="grade weak">IIC</span></span></div>
+      <p class="note">Thrombocytopenia is a known side effect. Surgery within 12 h of abciximab would most likely necessitate platelet transfusion.</p>
+
+    </div></div></div>
+  </div>
+
+  <div class="card" data-tags="cilostazol pde3 phosphodiesterase peripheral arterial 2 days">
+    <button class="card-head" aria-expanded="false">
+      <span class="icon">C</span>
+      <span class="head-text">
+        <h2>Cilostazol</h2>
+        <p>Stop 2 days</p>
+      </span>
+      <span class="chev">▾</span>
+    </button>
+    <div class="card-body"><div class="card-inner"><div class="card-content">
+
+      <div class="rec"><span class="tag">STOP</span><span class="txt">Based on elimination half-life, avoid needle placement for <strong>2 days</strong> after discontinuation. <span class="grade weak">IIC</span></span></div>
+      <div class="rec"><span class="tag">CATHETER</span><span class="txt">Remove neuraxial and deep plexus/peripheral catheters <strong>prior to</strong> reinstitution of cilostazol. <span class="grade weak">IIC</span></span></div>
+      <div class="rec"><span class="tag">RESUME</span><span class="txt">First postoperative dose <strong>6 h</strong> after catheter removal. <span class="grade weak">IIC</span></span></div>
+
+      <p class="note">Selective PDE IIIA inhibitor with weak, reversible antiplatelet effect. Half-life 11 h (prolonged in severe renal impairment); terminal half-life of the active metabolite 21 h. One case report of spinal haematoma following epidural catheter removal in the presence of cilostazol.</p>
+
+    </div></div></div>
+  </div>
+
+  <!-- ============ THROMBOLYTICS ============ -->
+  <div class="section-label">Thrombolytics &amp; Other Agents</div>
+
+  <div class="card avoid" data-tags="thrombolytic fibrinolytic tpa alteplase tenecteplase streptokinase urokinase 48 hours">
+    <button class="card-head" aria-expanded="false">
+      <span class="icon">⚡</span>
+      <span class="head-text">
+        <h2>Fibrinolytic / Thrombolytic Therapy</h2>
+        <p>High-risk — 48 h and 10-day rules apply</p>
+      </span>
+      <span class="chev">▾</span>
+    </button>
+    <div class="card-body"><div class="card-inner"><div class="card-content">
+
+      <div class="rec yellow"><span class="tag">HISTORY</span><span class="txt">In patients scheduled to receive thrombolytic therapy, query the patient and review the medical record for recent lumbar puncture, spinal/epidural anaesthesia, or epidural steroid injection to allow appropriate monitoring. Original contraindications suggest avoiding these drugs for <strong>10 days</strong> following puncture of non-compressible vessels. <span class="grade">IA</span></span></div>
+      <div class="rec yellow"><span class="tag">AVOID</span><span class="txt">In patients who have received fibrinolytic/thrombolytic drugs, recommend <strong>against needle placement for at least 48 h</strong>. Document normalisation of clotting studies, including fibrinogen. <span class="grade">IA</span></span></div>
+      <div class="rec yellow"><span class="tag">MONITOR</span><span class="txt">If a neuraxial block was performed at or near the time of thrombolytic therapy, continue frequent neurological monitoring (e.g. every 2 h) for at least <strong>48 h</strong> after the last dose. If combined with an ongoing epidural infusion, limit the infusion to drugs minimising sensory and motor block. <span class="grade">IC</span></span></div>
+      <div class="rec yellow"><span class="tag">CATHETER</span><span class="txt">No definitive recommendation for catheter removal if thrombolytics are given unexpectedly during infusion. Suggest measuring <strong>fibrinogen</strong> (one of the last clotting factors to recover) to evaluate residual thrombolytic effect and appropriate timing of removal. Continue frequent neurological monitoring for at least 48 h after removal. <span class="grade weak">IIIC</span></span></div>
+
+      <p class="note">Fibrinogen and plasminogen are maximally depressed at 5 h after thrombolytic therapy and remain significantly depressed at 27 h. Most published reports involve spontaneous spinal/epidural haematomas. Patients often receive concomitant IV heparin (target aPTT 1.5–2× normal) and an antiplatelet agent, further increasing risk.</p>
+
+    </div></div></div>
+  </div>
+
+  <div class="card avoid" data-tags="argatroban bivalirudin desirudin hirudin thrombin inhibitor hit">
+    <button class="card-head" aria-expanded="false">
+      <span class="icon">✕</span>
+      <span class="head-text">
+        <h2>Parenteral Direct Thrombin Inhibitors</h2>
+        <p>Suggest against neuraxial techniques</p>
+      </span>
+      <span class="chev">▾</span>
+    </button>
+    <div class="card-body"><div class="card-inner"><div class="card-content">
+
+      <div class="rec yellow"><span class="tag">AVOID</span><span class="txt">In patients receiving parenteral thrombin inhibitors (<strong>argatroban, bivalirudin, desirudin</strong>), suggest <strong>against</strong> the performance of neuraxial techniques. <span class="grade weak">IIIC</span></span></div>
+
+      <p class="note">These agents inhibit both free and clot-bound thrombin. There is <strong>no antidote</strong> — the antithrombin effect cannot be pharmacologically reversed. Effect is monitored by aPTT and persists 1–3 h after IV administration. Although no spinal haematomas have been reported with neuraxial anaesthesia, spontaneous intracranial bleeding has occurred. Indications (typically HIT requiring therapeutic anticoagulation) make these patients poor candidates for neuraxial blockade.</p>
+
+    </div></div></div>
+  </div>
+
+  <div class="card warn" data-tags="reversal antidote andexanet alfa andexxa idarucizumab praxbind pcc apcc">
+    <button class="card-head" aria-expanded="false">
+      <span class="icon">↺</span>
+      <span class="head-text">
+        <h2>DOAC Reversal Agents</h2>
+        <p>Not to be used to enable regional anaesthesia</p>
+      </span>
+      <span class="chev">▾</span>
+    </button>
+    <div class="card-body"><div class="card-inner"><div class="card-content">
+
+      <div class="rec yellow"><span class="tag">NEW</span><span class="txt">Available data suggest <strong>against</strong> the use of idarucizumab, andexanet alfa, PCC, or aPCC to reverse DOAC anticoagulant activity to enable the safe performance of a neuraxial intervention in routine patients. <span class="grade weak">IIIC — NEW</span></span></div>
+
+      <h4>Andexanet alfa (Andexxa)</h4>
+      <p class="note">Recombinant protein indicated for reversal of rivaroxaban or apixaban in life-threatening or uncontrolled bleeding. Reduces anti-Xa activity by ~92%. <strong>Not approved</strong> for reversal prior to emergency surgery/procedures or neuraxial interventions. Black box warning: arterial and venous thromboembolic events, ischaemic events including MI and stroke, cardiac arrest, sudden death. Short terminal half-life (5–7 h) means re-elevation or incomplete reversal may occur. Dosing: 400 mg (low) or 800 mg (high) IV bolus, followed by 120-min infusion of 480 mg or 960 mg respectively.</p>
+
+      <h4>Idarucizumab (Praxbind)</h4>
+      <p class="note">Humanised monoclonal antibody fragment approved for dabigatran reversal in emergency surgery/urgent procedures or life-threatening bleeding. Complete reversal with dabigatran levels &lt; 20 ng/mL within 30 min. <strong>Not FDA-approved</strong> for reversal prior to neuraxial interventions. Dose 5 g IV; an additional 5 g may be considered if bleeding reappears with elevated coagulation parameters. Risks: re-elevation of coagulation parameters, hypersensitivity, serious adverse reactions including fatal outcome in hereditary fructose intolerance (sorbitol excipient).</p>
+
+      <h4>PCC / aPCC</h4>
+      <p class="note">May be an option if specific antidotes are unavailable or too costly, but all procoagulant agents carry inherent prothrombotic risk. No data evaluating their use for reversal before neuraxial intervention.</p>
+
+      <div class="rec"><span class="tag">PRINCIPLE</span><span class="txt">If surgery can be postponed to allow spontaneous recovery of normal haemostasis, <strong>discontinuation of the antithrombotic drug is the preferred strategy</strong>. If waiting is not an option and reversal is needed for the safe conduct of surgery itself, regional techniques may be considered after full dabigatran reversal with idarucizumab.</span></div>
+
+    </div></div></div>
+  </div>
+
+  <!-- ============ SPECIAL POPULATIONS ============ -->
+  <div class="section-label">Special Populations &amp; Techniques</div>
+
+  <div class="card" data-tags="obstetric pregnancy parturient labour epidural caesarean">
+    <button class="card-head" aria-expanded="false">
+      <span class="icon">🤰</span>
+      <span class="head-text">
+        <h2>Obstetric Patients</h2>
+        <p>Same rules apply — with a caveat for urgent cases</p>
+      </span>
+      <span class="chev">▾</span>
+    </button>
+    <div class="card-body"><div class="card-inner"><div class="card-content">
+
+      <div class="rec"><span class="tag">APPLY</span><span class="txt">Given limited pharmacological data in pregnancy and the absence of large series, <strong>apply the same recommendations in this document to parturients</strong>. <span class="grade weak">IIIC</span></span></div>
+      <div class="rec yellow"><span class="tag">EXCEPTION</span><span class="txt">In select high-risk parturients receiving VTE prophylaxis who require urgent intervention for maternal or fetal indications, the risk of general anaesthesia may exceed that of neuraxial anaesthesia — exceptions/modifications may be appropriate. <span class="grade weak">IIIC</span></span></div>
+
+      <h4>Why the risk is lower in obstetrics</h4>
+      <div class="rec"><span class="tag">DATA</span><span class="txt">Moen et al: 2 spinal haematomas in obstetric patients with apparent coagulopathy (≈ 1:200,000). Bateman et al: 7 epidural haematomas among 142,287 obstetric patients (≈ 1:20,326) and none in obstetric patients.</span></div>
+      <p class="note">Proposed explanations: the hypercoagulable state of pregnancy, a more compliant epidural space unimpeded by osteoporotic deformity (tolerates larger blood volumes before symptomatic compression), and pregnancy-related pharmacokinetic changes (lower peak anti-Xa, shorter duration of action, lower total drug exposure for LMWH).</p>
+
+      <h4>Benefits of neuraxial anaesthesia for caesarean delivery</h4>
+      <p class="note"><strong>Maternal:</strong> reduces anaesthesia-related adverse events, reduces aspiration risk, avoids hypertensive response to intubation, avoids awareness, less intraoperative blood loss and uterine atony, fewer surgical site infections, superior analgesia with opioid sparing, reduced chronic post-delivery pain, enables immediate skin-to-skin bonding and breastfeeding.<br>
+      <strong>Fetal/neonatal:</strong> more favourable Apgar scores and umbilical venous pH, avoids in-utero exposure to induction/inhalational agents.</p>
+      <p class="note">Avoidable (non-emergent) general anaesthesia is associated with increased odds of severe overall complications (aOR 2.9; 95% CI 1.6–5.2) and severe anaesthetic complications (aOR 1.6; 95% CI 1.4–1.9).</p>
+
+      <h4>Peripartum planning</h4>
+      <div class="rec"><span class="tag">PROTOCOL</span><span class="txt">Every labour unit should have a protocol for when anticoagulants should be stopped, and consider short-term strategies such as converting to UFH (shorter half-life) in anticipation of delivery. Multidisciplinary planning should determine anticoagulant dosing and cessation times.</span></div>
+
+    </div></div></div>
+  </div>
+
+  <div class="card" data-tags="peripheral nerve block plexus deep superficial compressibility">
+    <button class="card-head" aria-expanded="false">
+      <span class="icon">◈</span>
+      <span class="head-text">
+        <h2>Plexus &amp; Peripheral Blocks</h2>
+        <p>Deep blocks follow neuraxial rules</p>
+      </span>
+      <span class="chev">▾</span>
+    </button>
+    <div class="card-body"><div class="card-inner"><div class="card-content">
+
+      <div class="rec"><span class="tag">DEEP</span><span class="txt">For patients undergoing <strong>deep plexus or deep peripheral block</strong>, apply the guidelines for neuraxial block similarly. <span class="grade">IC</span></span></div>
+      <div class="rec"><span class="tag">OTHER</span><span class="txt">For other plexus or peripheral techniques, base performance, catheter maintenance and catheter removal on <strong>site compressibility, vascularity, and consequences of bleeding</strong> should it occur. <span class="grade weak">IIC</span></span></div>
+
+      <h4>High-risk deep blocks (per Canadian Anaesthesiologists Society advisory)</h4>
+      <p class="note">Stellate ganglion, infraclavicular, lumbar sympathetic, lumbar plexus, paravertebral — plus other deep plexus/deep peripheral techniques. Haemorrhagic complications here, particularly with antithrombotic therapy, are often serious; significant blood loss rather than neural deficit may be the most serious complication.</p>
+
+      <p class="note">Superficial nerve blocks can generally be performed without any therapy-free interval and irrespective of the antithrombotic dose — a position shared with ESAIC/ESRA. Published cases of clinically significant bleeding after peripheral techniques in patients with normal haemostasis continue to suggest vigilance.</p>
+
+    </div></div></div>
+  </div>
+
+  <div class="card" data-tags="herbal garlic ginkgo ginseng supplements">
+    <button class="card-head" aria-expanded="false">
+      <span class="icon">🌿</span>
+      <span class="head-text">
+        <h2>Herbal Medications</h2>
+        <p>Do not cancel or delay procedures</p>
+      </span>
+      <span class="chev">▾</span>
+    </button>
+    <div class="card-body"><div class="card-inner"><div class="card-content">
+
+      <div class="rec"><span class="tag">REC</span><span class="txt">Herbal medications do <strong>not</strong> create a level of risk that interferes with neuraxial blocks. Recommend <strong>against</strong> mandatory discontinuation or avoidance of regional techniques in patients taking them. <span class="grade">IC</span></span></div>
+
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Herb</th><th>Effect</th><th>Time to normal haemostasis</th></tr></thead>
+          <tbody>
+            <tr><td class="drug">Garlic</td><td>Inhibition of platelet aggregation (may be irreversible)</td><td>7 days</td></tr>
+            <tr><td class="drug">Ginkgo</td><td>Inhibition of platelet-activating factor</td><td>36 h</td></tr>
+            <tr><td class="drug">Ginseng</td><td>Lowers blood glucose; increased PT/aPTT in animals; may decrease warfarin effect</td><td>24 h</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Case reports exist of spontaneous neuraxial bleeding after garlic and ginkgo biloba. A prospective study of &gt; 600 patients found no difference in surgical outcomes including bleeding. However, concurrent use with anticoagulants or heparin may increase bleeding risk. There is no reason to cancel a procedure if patients have not discontinued herbal therapy.</p>
+
+    </div></div></div>
+  </div>
+
+  <div class="card" data-tags="unplanned anticoagulation catheter pharmacy failsafe emergency">
+    <button class="card-head" aria-expanded="false">
+      <span class="icon">⚑</span>
+      <span class="head-text">
+        <h2>Unplanned Anticoagulation with a Catheter In Situ</h2>
+        <p>The pharmacy failsafe &amp; multidisciplinary response</p>
+      </span>
+      <span class="chev">▾</span>
+    </button>
+    <div class="card-body"><div class="card-inner"><div class="card-content">
+
+      <div class="rec yellow"><span class="tag">ALERT</span><span class="txt">Emergent antithrombotic therapy (vascular graft thrombosis, acute coronary syndrome/MI) or a communication breakdown can result in unanticipated anticoagulation with an indwelling epidural catheter. The acute pain service must be aware of alterations in the degree and timing of anticoagulation.</span></div>
+      <div class="rec"><span class="tag">SYSTEM</span><span class="txt">Centralised computerised pharmacy services can flag any antithrombotic order as a drug <strong>“interaction”</strong> and alert the pharmacist to contact the pain service — the <strong>“pharmacy failsafe”</strong>.</span></div>
+      <div class="rec"><span class="tag">DECISION</span><span class="txt">Timing of catheter removal is based on the ongoing risk of thromboembolism, the need for continued antithrombotic therapy, and the potential for neuraxial bleeding during catheter maintenance and removal.</span></div>
+      <p class="note">Use the drug-specific intervals in the relevant sections above when deciding how long to withhold the agent, or document an acceptable residual level (DOAC &lt; 30 ng/mL, anti-Xa ≤ 0.1 IU/mL) before catheter removal.</p>
+
+    </div></div></div>
+  </div>
+
+  <div class="card" data-tags="esaic esra european comparison differences">
+    <button class="card-head" aria-expanded="false">
+      <span class="icon">🇪🇺</span>
+      <span class="head-text">
+        <h2>ASRA PM vs ESAIC/ESRA — Key Differences</h2>
+        <p>Where the two guidelines diverge</p>
+      </span>
+      <span class="chev">▾</span>
+    </button>
+    <div class="card-body"><div class="card-inner"><div class="card-content">
+
+      <div class="rec"><span class="tag">SHARED</span><span class="txt">Both use <strong>“low dose” / “high dose”</strong> terminology for DOACs, LMWH, UFH, fondaparinux and aspirin, since dose, indication and patient risk factors all influence pharmacokinetics.</span></div>
+      <div class="rec"><span class="tag">VKA</span><span class="txt">ESAIC/ESRA recommend complete resolution of VKA effect with INR return to the local normal range (e.g. <strong>≤ 1.1</strong>) — similar to ASRA PM’s requirement for a normalised INR.</span></div>
+      <div class="rec"><span class="tag">DOAC</span><span class="txt">ESAIC/ESRA recommend a high-dose DOAC-free interval of <strong>72 h for all DOACs</strong>, with laboratory testing when renal function is impaired (anti-Xa inhibitors CrCl &lt; 30; dabigatran CrCl &lt; 50).</span></div>
+      <div class="rec yellow"><span class="tag">DIVERGE</span><span class="txt">Notable differences from ASRA PM exist for <strong>antiplatelet medications and apixaban</strong>. ACCP recommends ticagrelor be stopped 3–5 days pre-non-cardiac surgery, while labelling says 5 days and ASRA PM says 5 days.</span></div>
+      <div class="rec"><span class="tag">PERIPHERAL</span><span class="txt">Both agree: superficial nerve blocks need no therapy-free interval regardless of antithrombotic dose; deep nerve blocks follow the more stringent neuraxial recommendations.</span></div>
+      <div class="rec"><span class="tag">OBSTETRIC</span><span class="txt">Both apply the same recommendations as the non-pregnant population, with deviation possible in selected high-risk parturients after multidisciplinary discussion and risk–benefit analysis.</span></div>
+
+    </div></div></div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="foot-inner">
+    <h3>Source &amp; Citation</h3>
+    <div class="cite">
+      <strong>Kopp SL, Vandermeulen E, McBane RD, Perlas A, Leffert L, Horlocker T.</strong><br>
+      Regional anesthesia in the patient receiving antithrombotic or thrombolytic therapy: American Society of Regional Anesthesia and Pain Medicine Evidence-Based Guidelines (fifth edition).<br>
+      <em>Reg Anesth Pain Med.</em> 2025;0:1–29. doi: <a href="https://doi.org/10.1136/rapm-2024-105766" target="_blank" rel="noopener">10.1136/rapm-2024-105766</a><br>
+      Received 13 June 2024 · Accepted 14 November 2024 · Published Online First.
+    </div>
+    <p style="margin:0 0 .8rem; font-size:.78rem;">
+      Correspondence: Dr Sandra L Kopp, Mayo Clinic, Rochester, Minnesota, USA — kopp.sandra@mayo.edu
+    </p>
+    <div class="disclaimer">
+      <strong style="color:var(--yellow-300);">Disclaimer:</strong> This is an unofficial educational summary of the ASRA Pain Medicine 5th edition guidelines, prepared for quick reference at the point of care. It is condensed and does not reproduce the full text, methodology, pharmacology or evidence discussions. Always consult the original publication and the full prescribing information before making clinical decisions. Deviation from these recommendations may be appropriate based on the judgement of the responsible anaesthesiologist. This summary does not replace clinical judgement, local protocols or multidisciplinary discussion — and it cannot guarantee a specific outcome.
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- Accordion ---------- */
+  var cards = Array.prototype.slice.call(document.querySelectorAll('.card'));
+
+  cards.forEach(function(card){
+    var head = card.querySelector('.card-head');
+    if(!head) return;
+
+    // Sync initial aria state with the open class
+    head.setAttribute('aria-expanded', card.classList.contains('open') ? 'true' : 'false');
+
+    head.addEventListener('click', function(){
+      var isOpen = card.classList.toggle('open');
+      head.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+  });
+
+  /* ---------- Expand / collapse all ---------- */
+  document.getElementById('expandAll').addEventListener('click', function(){
+    cards.forEach(function(card){
+      if(card.style.display === 'none') return;
+      card.classList.add('open');
+      card.querySelector('.card-head').setAttribute('aria-expanded','true');
+    });
+  });
+
+  document.getElementById('collapseAll').addEventListener('click', function(){
+    cards.forEach(function(card){
+      card.classList.remove('open');
+      card.querySelector('.card-head').setAttribute('aria-expanded','false');
+    });
+  });
+
+  /* ---------- Search filter ---------- */
+  var search = document.getElementById('search');
+  var noResults = document.getElementById('noResults');
+  var labels = Array.prototype.slice.call(document.querySelectorAll('.section-label'));
+
+  function runFilter(){
+    var q = search.value.trim().toLowerCase();
+    var visible = 0;
+
+    cards.forEach(function(card){
+      var hay = (card.textContent + ' ' + (card.dataset.tags || '')).toLowerCase();
+      var match = !q || hay.indexOf(q) !== -1;
+      card.style.display = match ? '' : 'none';
+      if(match) visible++;
+
+      // Auto-open matching cards while searching
+      if(q && match){
+        card.classList.add('open');
+        card.querySelector('.card-head').setAttribute('aria-expanded','true');
+      }
+    });
+
+    // Hide section labels whose following cards are all hidden
+    labels.forEach(function(label){
+      var next = label.nextElementSibling;
+      var anyVisible = false;
+      while(next && !next.classList.contains('section-label')){
+        if(next.classList.contains('card') && next.style.display !== 'none'){
+          anyVisible = true; break;
+        }
+        next = next.nextElementSibling;
+      }
+      label.style.display = anyVisible ? '' : 'none';
+    });
+
+    noResults.classList.toggle('show', visible === 0);
+  }
+
+  var debounce;
+  search.addEventListener('input', function(){
+    clearTimeout(debounce);
+    debounce = setTimeout(runFilter, 120);
+  });
+
+  /* ---------- Deep-link support (#id on card) ---------- */
+  if(location.hash){
+    var target = document.querySelector(location.hash);
+    if(target && target.classList.contains('card')){
+      target.classList.add('open');
+      target.querySelector('.card-head').setAttribute('aria-expanded','true');
+    }
+  }
+
+})();
+</script>
+</body>
+                                                                                                                                                                                                                                                                                                                                </html>
