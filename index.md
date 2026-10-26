@@ -44,9 +44,57 @@
   }
   #reset:hover{background:rgba(255,255,255,.1); color:#fff}
 
+  /* ---------- OVERVIEW TABLE ---------- */
+  .overview{
+    margin:16px 16px 0;
+    background:#fff;
+    border:1px solid #e2e8f0;
+    border-radius:12px;
+    box-shadow:0 1px 3px rgba(15,23,42,.07);
+    overflow:hidden;
+  }
+  .overview h2{
+    font-size:12px; margin:0; padding:10px 14px;
+    background:#f1f5f9; border-bottom:1px solid #e2e8f0;
+    text-transform:uppercase; letter-spacing:.7px; color:#475569;
+    display:flex; justify-content:space-between; align-items:center; gap:8px;
+  }
+  .overview h2 small{
+    text-transform:none; letter-spacing:0; font-weight:500;
+    color:#94a3b8; font-size:11px;
+  }
+  .table-wrap{overflow-x:auto}
+  table{width:100%; border-collapse:collapse; font-size:12.5px; min-width:680px}
+  thead th{
+    text-align:left; padding:8px 12px; font-size:10px;
+    text-transform:uppercase; letter-spacing:.6px;
+    color:#64748b; background:#f8fafc;
+    border-bottom:1px solid #e2e8f0; white-space:nowrap;
+  }
+  tbody td{
+    padding:8px 12px; border-bottom:1px solid #f1f5f9;
+    vertical-align:top;
+  }
+  tbody tr:last-child td{border-bottom:none}
+  tbody tr:hover{background:#f8fafc}
+  tbody tr.row-urgent{background:#fef2f2}
+  tbody tr.row-urgent:hover{background:#fee2e2}
+  .bed-cell{font-weight:800; white-space:nowrap}
+  tr.row-urgent .bed-cell{color:#dc2626}
+  td.dim{color:#94a3b8}
+  td.time{font-weight:700; color:#475569; white-space:nowrap}
+  td.done-list{color:#64748b; font-size:11.5px; max-width:260px}
+  .badge{
+    font-size:9.5px; font-weight:800; letter-spacing:.5px;
+    text-transform:uppercase; padding:2px 7px; border-radius:999px; color:#fff;
+    display:inline-block;
+  }
+  .badge.urgent{background:#dc2626}
+  .badge.semi  {background:#f59e0b}
+
   /* ---------- GRID ---------- */
   main{
-    padding:16px;
+    padding:12px 16px 16px;
     display:grid;
     grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
     gap:14px;
@@ -127,12 +175,6 @@
   .task-body{flex:1; min-width:0}
   .task-text{font-size:13px; line-height:1.35; word-break:break-word}
   .task-meta{display:flex; flex-wrap:wrap; gap:6px; align-items:center; margin-top:4px}
-  .badge{
-    font-size:9.5px; font-weight:800; letter-spacing:.5px;
-    text-transform:uppercase; padding:2px 7px; border-radius:999px; color:#fff;
-  }
-  .badge.urgent{background:#dc2626}
-  .badge.semi  {background:#f59e0b}
   .time{font-size:11px; font-weight:700; color:#475569}
   .del{
     background:none; border:none; color:#94a3b8;
@@ -150,8 +192,10 @@
   @media print{
     header{position:static; background:#fff; color:#000}
     .task-form, .del, #reset, footer{display:none}
-    main{grid-template-columns:repeat(3,1fr)}
+    .overview{margin:8px 0; box-shadow:none}
+    main{grid-template-columns:repeat(3,1fr); padding:8px 0}
     .bed{break-inside:avoid; box-shadow:none}
+    table{min-width:0; font-size:10px}
   }
 </style>
 </head>
@@ -167,9 +211,30 @@
   <button id="reset" type="button">Reset all</button>
 </header>
 
+<!-- ---------- OVERVIEW TABLE ---------- -->
+<section class="overview">
+  <h2>Shift Overview <small>click a row to jump to that bed</small></h2>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Bed</th>
+          <th>Patient</th>
+          <th>RN</th>
+          <th>Priority</th>
+          <th>Next Task</th>
+          <th>Time</th>
+          <th>Done</th>
+        </tr>
+      </thead>
+      <tbody id="overview-body"></tbody>
+    </table>
+  </div>
+</section>
+
 <main id="beds"></main>
 
-<footer>Data is saved automatically in this browser. Add <b>?bed=3</b> style filters? No – keep it simple. 😊</footer>
+<footer>Data is saved automatically in this browser. Refresh-safe.</footer>
 
 <script>
 (function () {
@@ -285,8 +350,12 @@
     patientInput.value = bed.patient;
     rnInput.value      = bed.rn;
 
-    patientInput.addEventListener("input", e => { bed.patient = e.target.value; save(); });
-    rnInput.addEventListener("input",      e => { bed.rn      = e.target.value; save(); });
+    patientInput.addEventListener("input", e => {
+      bed.patient = e.target.value; save(); updateStats();
+    });
+    rnInput.addEventListener("input", e => {
+      bed.rn = e.target.value; save(); updateStats();
+    });
 
     /* add task */
     const form        = section.querySelector(".task-form");
@@ -398,6 +467,116 @@
     }
   }
 
+  /* ---------------- OVERVIEW TABLE ---------------- */
+  function makeCell(text, cls) {
+    const td = document.createElement("td");
+    if (cls) td.className = cls;
+    td.textContent = text;
+    return td;
+  }
+
+  function truncate(s, n) {
+    return s.length > n ? s.slice(0, n - 1) + "…" : s;
+  }
+
+  function renderTable() {
+    const tbody = document.getElementById("overview-body");
+    if (!tbody) return;
+    tbody.innerHTML = "";
+
+    for (let i = 1; i <= BED_COUNT; i++) {
+      const bed = state.beds[i];
+
+      // unfinished tasks, already sorted urgent-first then by time
+      const pending = sortTasks(bed.tasks).filter(t => !t.done);
+      const next    = pending[0] || null;
+
+      const hasUrgent = pending.some(t => t.priority === "urgent");
+      const hasSemi   = pending.some(t => t.priority === "semi");
+
+      const doneTasks = bed.tasks.filter(t => t.done);
+
+      const tr = document.createElement("tr");
+      if (hasUrgent) tr.className = "row-urgent";
+
+      /* Bed */
+      const tdBed = document.createElement("td");
+      tdBed.className = "bed-cell";
+      tdBed.textContent = "Bed " + i;
+      tr.appendChild(tdBed);
+
+      /* Patient / RN */
+      tr.appendChild(makeCell(bed.patient || "—", bed.patient ? "" : "dim"));
+      tr.appendChild(makeCell(bed.rn || "—", bed.rn ? "" : "dim"));
+
+      /* Priority (highest pending priority for this bed) */
+      const tdPri = document.createElement("td");
+      if (hasUrgent) {
+        const b = document.createElement("span");
+        b.className = "badge urgent";
+        b.textContent = "Urgent";
+        tdPri.appendChild(b);
+      } else if (hasSemi) {
+        const b = document.createElement("span");
+        b.className = "badge semi";
+        b.textContent = "Semi-urgent";
+        tdPri.appendChild(b);
+      } else {
+        tdPri.textContent = "—";
+        tdPri.className = "dim";
+      }
+      tr.appendChild(tdPri);
+
+      /* Next task + time */
+      const tdNext = document.createElement("td");
+      const tdTime = document.createElement("td");
+      if (next) {
+        tdNext.textContent = next.text;
+        if (next.time) {
+          tdTime.textContent = next.time;
+          tdTime.className = "time";
+        } else {
+          tdTime.textContent = "—";
+          tdTime.className = "dim";
+        }
+      } else if (bed.tasks.length > 0) {
+        tdNext.textContent = "All done ✅";
+        tdNext.className = "dim";
+        tdTime.textContent = "—";
+        tdTime.className = "dim";
+      } else {
+        tdNext.textContent = "—";
+        tdNext.className = "dim";
+        tdTime.textContent = "—";
+        tdTime.className = "dim";
+      }
+      tr.appendChild(tdNext);
+      tr.appendChild(tdTime);
+
+      /* Done */
+      const tdDone = document.createElement("td");
+      tdDone.className = "done-list";
+      if (doneTasks.length === 0) {
+        tdDone.textContent = "—";
+        tdDone.classList.add("dim");
+      } else {
+        const list = doneTasks.map(t => truncate(t.text, 40)).join(" · ");
+        tdDone.textContent = list;
+        tdDone.title = doneTasks.map(t => t.text).join("\n");
+      }
+      tr.appendChild(tdDone);
+
+      /* Click row → scroll to bed card */
+      tr.style.cursor = "pointer";
+      tr.addEventListener("click", () => {
+        const card = document.getElementById("bed-" + i);
+        if (card) card.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+
+      tbody.appendChild(tr);
+    }
+  }
+
   /* ---------------- STATS / HIGHLIGHTS ---------------- */
   function updateStats() {
     let urgent = 0, semi = 0, done = 0;
@@ -419,6 +598,8 @@
     document.getElementById("c-urgent").textContent = urgent;
     document.getElementById("c-semi").textContent   = semi;
     document.getElementById("c-done").textContent   = done;
+
+    renderTable();
   }
 
   /* ---------------- RESET ---------------- */
